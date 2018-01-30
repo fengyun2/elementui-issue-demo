@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>elementui-demo</title>
+</head>
+<body>
+  <link rel="stylesheet" type="text/css" href="http://unpkg.com/element-ui/lib/theme-chalk/index.css"">
+<script src="http://unpkg.com/vue/dist/vue.js"></script>
+<script src="http://unpkg.com/element-ui/lib/index.js"></script>
+<div id="app">
+      <el-table :data="tableData" border style="width: 100%">
+     <el-table-column prop="name" label="姓名" align="center"></el-table-column>
+     <el-table-column prop="age" label="年龄" align="center"></el-table-column>
+     <el-table-column prop="sex" label="性别" align="center"></el-table-column>
+  </el-table>
+
+  <div class="pagination">
+    <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.cur_page" :page-size="pageInfo.page_size" layout="total, prev, pager, next, jumper" :total="pageInfo.count">
+    </el-pagination>
+  </div>
+</div>
+<script type="text/javascript">
+var Main = {
+  data: function () {
+    return {
+      input: '',
+      tableData: [
+        {name: '张三', age: 20, sex: '男'},
+        {name: '李四', age: 21, sex: '女'}
+      ],
+      pageInfo: {
+        cur_page: 1,
+        page_size: 10,
+        count: 100,
+      }
+    }
+  },
+  methods: {
+    handleCurrentChange: function (val) {
+      console.log('分页当前页数：', val);
+    }
+  }
+}
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+</script>
+</body>
+</html>
